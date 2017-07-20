@@ -23,7 +23,7 @@ import java.util.Set;
 
 @Controller
 @Transactional
-public class BillableController {
+public class CarController {
     private final BillableService billableService;
 
     private final UserService userService;
@@ -31,7 +31,7 @@ public class BillableController {
     private final ItemService itemService;
 
     @Autowired
-    public BillableController(BillableService billableService, UserService userService, ItemService itemService) {
+    public CarController(BillableService billableService, UserService userService, ItemService itemService) {
         this.billableService = billableService;
         this.userService = userService;
         this.itemService = itemService;

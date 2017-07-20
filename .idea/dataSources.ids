@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - yourpc@localhost" uuid="ccfc5f7e-baec-4c38-b3e4-43cbd088cb81">
+    <database-info product="MySQL" version="5.5.5-10.1.13-MariaDB" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="yourpc"/>
+    <table name="billable" schema="" catalog="yourpc" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="billableTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="price" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FKm90e3b8i2f61n1hwyf9sq8gvr" columns="user_id" ref-table="user" ref-schema="" ref-catalog="yourpc" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FKu1h60i0fx294lm10wvh8yn7k" table="item_billable" schema="" catalog="yourpc" columns="billableId"/>
+      <index name="FKm90e3b8i2f61n1hwyf9sq8gvr" unique="false" columns="user_id"/>
+    </table>
+    <table name="category" schema="" catalog="yourpc" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="categoryName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK2n9w8d0dp4bsfra9dcg0046l4" table="item" schema="" catalog="yourpc" columns="category_id"/>
+    </table>
+    <table name="item" schema="" catalog="yourpc" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="itemContent" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="itemName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="image" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="itemPrice" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="quantity" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="category_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK2n9w8d0dp4bsfra9dcg0046l4" columns="category_id" ref-table="category" ref-schema="" ref-catalog="yourpc" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FKlvn5656gdfm6alrxlf1tr97t8" table="item_billable" schema="" catalog="yourpc" columns="itemId"/>
+      <exported-key name="FKr45cdg3l6qycg84idd2b8hlp1" table="user_item" schema="" catalog="yourpc" columns="itemId"/>
+      <index name="FK2n9w8d0dp4bsfra9dcg0046l4" unique="false" columns="category_id"/>
+    </table>
+    <table name="item_billable" schema="" catalog="yourpc" type="TABLE">
+      <column name="billableId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="itemId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="itemId,billableId"/>
+      <foreign-key name="FKlvn5656gdfm6alrxlf1tr97t8" columns="itemId" ref-table="item" ref-schema="" ref-catalog="yourpc" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKu1h60i0fx294lm10wvh8yn7k" columns="billableId" ref-table="billable" ref-schema="" ref-catalog="yourpc" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FKu1h60i0fx294lm10wvh8yn7k" unique="false" columns="billableId"/>
+    </table>
+    <table name="user" schema="" catalog="yourpc" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="userAddress" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="block" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="userEmail" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="enable" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="userName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="role" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="uuId" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FKm90e3b8i2f61n1hwyf9sq8gvr" table="billable" schema="" catalog="yourpc" columns="user_id"/>
+      <exported-key name="FKqxpjkd4r6vmxbxs07q5caya0f" table="user_item" schema="" catalog="yourpc" columns="userId"/>
+    </table>
+    <table name="user_item" schema="" catalog="yourpc" type="TABLE">
+      <column name="userId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="itemId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="itemId,userId"/>
+      <foreign-key name="FKqxpjkd4r6vmxbxs07q5caya0f" columns="userId" ref-table="user" ref-schema="" ref-catalog="yourpc" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKr45cdg3l6qycg84idd2b8hlp1" columns="itemId" ref-table="item" ref-schema="" ref-catalog="yourpc" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FKqxpjkd4r6vmxbxs07q5caya0f" unique="false" columns="userId"/>
+    </table>
+  </data-source>
+</component>
