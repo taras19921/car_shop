@@ -1,8 +1,5 @@
 package com.car_shop.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -11,18 +8,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="category")
-public class Category extends AbstractEntity
+@Table(name= "brand")
+public class Brand extends AbstractEntity
 {
-    @Column(name="categoryName")
+    @Column(name= "name")
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    private Set<Item> item = new HashSet<>();
+    @OneToMany(mappedBy = "brand")
+    private Set<Car> car = new HashSet<>();
 
-    public Category() {}
+    public Brand() {}
 
-    public Category(String name)
+    public Brand(String name)
     {
         super();
         this.name = name;
@@ -42,11 +39,11 @@ public class Category extends AbstractEntity
         this.name = name;
     }
 
-    public Set<Item> getItem() {
-        return item;
+    public Set<Car> getCar() {
+        return car;
     }
 
-    public void setItem(Set<Item> item) {
-        this.item = item;
+    public void setCar(Set<Car> car) {
+        this.car = car;
     }
 }

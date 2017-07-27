@@ -1,8 +1,5 @@
 package com.car_shop.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -23,8 +20,8 @@ public class Billable extends AbstractEntity
     @ManyToMany
     @JoinTable(name = "item_billable",
             joinColumns = @JoinColumn(name = "billableId"),
-            inverseJoinColumns = @JoinColumn(name = "itemId"))
-    private Set<Item> item = new HashSet<>();
+            inverseJoinColumns = @JoinColumn(name = "carId"))
+    private Set<Car> car = new HashSet<>();
 
     public Billable() {}
 
@@ -37,7 +34,7 @@ public class Billable extends AbstractEntity
     @Override
     public String toString()
     {
-        return "Time: " + localDateTime + ", User: " + user + ", Item" + item;
+        return "Time: " + localDateTime + ", User: " + user + ", Item" + car;
     }
 
     public LocalDateTime getLocalDateTime() {
@@ -64,11 +61,11 @@ public class Billable extends AbstractEntity
         this.user = user;
     }
 
-    public Set<Item> getItem() {
-        return item;
+    public Set<Car> getCar() {
+        return car;
     }
 
-    public void setItem(Set<Item> item) {
-        this.item = item;
+    public void setCar(Set<Car> car) {
+        this.car = car;
     }
 }

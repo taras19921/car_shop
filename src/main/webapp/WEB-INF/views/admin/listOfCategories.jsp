@@ -20,12 +20,12 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${categories}" var="category">
+            <c:forEach items="${brands}" var="brand">
                 <tr>
-                    <td><c:out value="${category.id}" /></td>
-                    <td><c:out value="${category.name}" /></td>
-                    <td><a href="/deleteCategory/${category.id}">Delete</a></td>
-                    <td><a href="/updateCategory/${category.id}">Update</a></td>
+                    <td><c:out value="${brand.id}" /></td>
+                    <td><c:out value="${brand.name}" /></td>
+                    <td><a href="/deleteCategory/${brand.id}">Delete</a></td>
+                    <td><a href="/updateCategory/${brand.id}">Update</a></td>
                 </tr>
             </c:forEach>
             </tbody>

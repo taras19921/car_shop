@@ -8,6 +8,6 @@ import java.util.Set;
 
 public interface BillableDao extends JpaRepository<Billable, Integer>
 {
-    @Query("select distinct b from Billable b left join fetch b.item")
+    @Query("select distinct b from Billable b left join fetch b.car")
     Set<Billable> getBillableWithItems();
 }

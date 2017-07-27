@@ -1,26 +1,26 @@
 package com.car_shop.dto;
 
-import com.car_shop.entity.Category;
+import com.car_shop.entity.Brand;
 
-public class ItemDto
+public class CarDto
 {
     private int id;
     private String name;
     private String content;
     private int price;
     private String pathImage;
-    private Category category;
+    private Brand brand;
 
-    ItemDto() {
+    CarDto() {
     }
 
-    public ItemDto(int id, String name, String content, int price, String pathImage, Category category) {
+    public CarDto(int id, String name, String content, int price, String pathImage, Brand brand) {
         this.id = id;
         this.name = name;
         this.content = content;
         this.price = price;
         this.pathImage = pathImage;
-        this.category = category;
+        this.brand = brand;
     }
 
     public int getId() {
@@ -63,12 +63,12 @@ public class ItemDto
         this.pathImage = pathImage;
     }
 
-    public Category getCategory() {
-        return category;
+    public Brand getBrand() {
+        return brand;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class ItemDto
                 ", content='" + content + '\'' +
                 ", price=" + price +
                 ", pathImage='" + pathImage + '\'' +
-                ", category=" + category +
+                ", category=" + brand +
                 '}';
     }
 }

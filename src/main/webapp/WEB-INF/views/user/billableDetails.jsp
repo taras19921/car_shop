@@ -21,8 +21,8 @@
                 <td><c:out value="${billable.id}" /></td>
                 <td><c:out value="${billable.localDateTime}" /></td>
                 <td>
-                    <c:forEach var="item" items="${billable.item}">
-                    <c:out value="${item.name}" /><br  />
+                    <c:forEach var="car" items="${billable.car}">
+                    <c:out value="${car.name}" /><br  />
                     </c:forEach>
                 </td>
                 <td><c:out value="${billable.price}" /></td>

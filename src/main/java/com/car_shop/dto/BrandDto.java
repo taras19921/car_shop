@@ -1,14 +1,14 @@
 package com.car_shop.dto;
 
-public class CategoryDto
+public class BrandDto
     {
         private int id;
         private String name;
 
-    CategoryDto() {
+    BrandDto() {
     }
 
-    public CategoryDto(int id, String name) {
+    public BrandDto(int id, String name) {
         this.id = id;
         this.name = name;
     }

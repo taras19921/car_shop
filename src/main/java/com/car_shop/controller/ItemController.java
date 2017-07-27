@@ -1,10 +1,10 @@
 package com.car_shop.controller;
 
-import com.car_shop.editors.CategoryEditor;
-import com.car_shop.entity.Category;
-import com.car_shop.entity.Item;
+import com.car_shop.editors.BrandEditor;
+import com.car_shop.entity.Brand;
+import com.car_shop.entity.Car;
 import com.car_shop.service.CategoryService;
-import com.car_shop.service.ItemService;
+import com.car_shop.service.CarService;
 import com.car_shop.validator.item.ItemValidationMessages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -18,36 +18,36 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class ItemController
 {
-    private final ItemService itemService;
+    private final CarService carService;
 
     private final CategoryService categoryService;
 
     @Autowired
-    public ItemController(ItemService itemService, CategoryService categoryService) {
-        this.itemService = itemService;
+    public ItemController(CarService carService, CategoryService categoryService) {
+        this.carService = carService;
         this.categoryService = categoryService;
     }
 
     @InitBinder
     public void init(WebDataBinder binder)
     {
-        binder.registerCustomEditor(Category.class, new CategoryEditor());
+        binder.registerCustomEditor(Brand.class, new BrandEditor());
     }
 
     @GetMapping("/item")
     public String addItem(Model model)
     {
-        model.addAttribute("item", new Item());
+        model.addAttribute("item", new Car());
         model.addAttribute("categories", categoryService.getAll());
         return "views-admin-item";
     }
 
     @PostMapping("/saveItem")
-    public String addItem(@ModelAttribute Item item, Model model, @RequestAttribute("image") MultipartFile image)
+    public String addItem(@ModelAttribute Car car, Model model, @RequestAttribute("image") MultipartFile image)
     {
         try
         {
-            itemService.add(item, image);
+            carService.add(car, image);
         }
         catch (Exception e)
         {
@@ -73,30 +73,30 @@ public class ItemController
     @GetMapping("/deleteItem/{id}")
     public String deleteItem(@PathVariable int id)
     {
-        itemService.delete(id);
+        carService.delete(id);
         return "redirect:/";
     }
 
     @GetMapping("/updateItem/{id}")
     public String getItem(@PathVariable int id, Model model)
     {
-        model.addAttribute("itemAttribute", itemService.getOne(id));
+        model.addAttribute("itemAttribute", carService.getOne(id));
         model.addAttribute("categories", categoryService.getAll());
         return "views-admin-updateItem";
     }
 
     @PostMapping("/updateItem/{id}")
-    public  String updateItem(@ModelAttribute Item item, @PathVariable int id,
+    public  String updateItem(@ModelAttribute Car car, @PathVariable int id,
                               @RequestAttribute("image") MultipartFile image)
     {
-        item.setId(id);
+        car.setId(id);
         if(image.isEmpty())
         {
-            itemService.update(item);
+            carService.update(car);
         }
         else
         {
-            itemService.update(item, image);
+            carService.update(car, image);
         }
         return "redirect:/listOfItems";
     }
@@ -104,7 +104,7 @@ public class ItemController
     @GetMapping("/listOfItems")
     public String allItems(Model model, @PageableDefault Pageable pageable)
     {
-        model.addAttribute("items", itemService.findAllPages(pageable));
+        model.addAttribute("cars", carService.findAllPages(pageable));
         return "views-admin-listOfItems";
     }
 }

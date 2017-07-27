@@ -1,7 +1,7 @@
 function searchInTable() {
     var names = [];
     $.ajax({
-        url: '/itemSearch?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
+        url: 'itemSearch?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
         method: 'GET',
         success: function (res) {
             for (var i in res) {
@@ -29,7 +29,7 @@ function searchInTable() {
 function searchItems() {
     var names = [];
     $.ajax({
-        url: '/itemSearch?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
+        url: 'itemSearch?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
         method: 'GET',
         success: function (res) {
             for (var i in res) {
@@ -60,7 +60,7 @@ function searchItems() {
 function searchPrices() {
     var prices = [];
     $.ajax({
-        url: '/itemSearch?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
+        url: 'itemSearch?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
         method: 'GET',
         success: function (res) {
             for (var i in res) {
@@ -91,12 +91,14 @@ function searchPrices() {
 
 function searchCategories() {
     var categories = [];
+
+    var url = 'itemSearch?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val();
     $.ajax({
-        url: '/itemSearch?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
+        url: 'itemSearch?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
         method: 'GET',
         success: function (res) {
             for (var i in res) {
-                categories.push(res[i].category.name);
+                categories.push(res[i].brand.name);
             }
             var div, div_2, spanText;
 

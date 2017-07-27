@@ -26,8 +26,8 @@
         </tr>
 
         <tr>
-            <td><form:label path="category">Category:</form:label></td>
-            <td><form:select path="category" items="${categories}" itemLabel="name" itemValue="id"/></td>
+            <td><form:label path="brand">Brand:</form:label></td>
+            <td><form:select path="brand" items="${brands}" itemLabel="name" itemValue="id"/></td>
         </tr>
 
         <tr>

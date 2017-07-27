@@ -47,7 +47,7 @@ UNLOCK TABLES;
 -- Table structure for table `category`
 --
 
-DROP TABLE IF EXISTS `category`;
+DROP TABLE IF EXISTS brand;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `category` (
@@ -61,17 +61,17 @@ CREATE TABLE `category` (
 -- Dumping data for table `category`
 --
 
-LOCK TABLES `category` WRITE;
-/*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'CPU'),(2,'GPU'),(3,'RAM'),(4,'PSU'),(5,'Case'),(6,'Storage'),(7,'Motherboard');
-/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+LOCK TABLES brand WRITE;
+/*!40000 ALTER TABLE brand DISABLE KEYS */;
+INSERT INTO brand VALUES (1,'CPU'),(2,'GPU'),(3,'RAM'),(4,'PSU'),(5,'Case'),(6,'Storage'),(7,'Motherboard');
+/*!40000 ALTER TABLE brand ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
 -- Table structure for table `item`
 --
 
-DROP TABLE IF EXISTS `item`;
+DROP TABLE IF EXISTS car;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `item` (
@@ -84,7 +84,7 @@ CREATE TABLE `item` (
   `quantity` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK2n9w8d0dp4bsfra9dcg0046l4` (`category_id`),
-  CONSTRAINT `FK2n9w8d0dp4bsfra9dcg0046l4` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
+  CONSTRAINT `FK2n9w8d0dp4bsfra9dcg0046l4` FOREIGN KEY (`category_id`) REFERENCES brand (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -92,10 +92,10 @@ CREATE TABLE `item` (
 -- Dumping data for table `item`
 --
 
-LOCK TABLES `item` WRITE;
-/*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (1,'Intel Core 2 Quad Q6600','Intel Core 2 Quad Q6600','resources/Q6600/index.jpg',120,1,6),(2,'HyperX FURY Blue HX313C9FK2/8 DDR3-1333 8GB(2x 4GB)/512Mx64 CL9','Kingston HyperX Fury','resources/Kingston HyperX Fury/s-l215.jpg',150,3,6),(3,'ASUS GeForce GT 440 1GB DDR5 HDMI DVI VGA PCI-e Graphics Card','ASUS GeForce GT440','resources/GT440/myF9E7-STYxr99CmVLZxkbw.jpg',90,2,0),(4,'Kingston Ssdnow Uv400 240Gb Sata Iii Solid State Drive','Kingston Ssdnow Uv400','resources/Kingston Ssdnow/s-l225.jpg',140,6,1),(5,'CORSAIR CS550M PSU MODULARE - 550 WATT','CORSAIR CS550M','resources/CORSAIR CS550M/s-l325.jpg',95,4,6),(6,'Game Max Proteus Black Gaming PC Midi Tower Case - USB 3.0','Game Max Proteus','resources/Game Max Proteus/m6yO04d6vRhOSxoIjmAuCbQ.jpg',70,5,4),(7,'ASUS P5Q Deluxe Motherboard, LGA775, Intel P45 + ICH10R, Dual DDR2, SATAII','ASUS P5Q Deluxe','resources/Asus P5Q Deluxe/28022777.jpg',40,7,0);
-/*!40000 ALTER TABLE `item` ENABLE KEYS */;
+LOCK TABLES car WRITE;
+/*!40000 ALTER TABLE car DISABLE KEYS */;
+INSERT INTO car VALUES (1,'Intel Core 2 Quad Q6600','Intel Core 2 Quad Q6600','resources/Q6600/index.jpg',120,1,6),(2,'HyperX FURY Blue HX313C9FK2/8 DDR3-1333 8GB(2x 4GB)/512Mx64 CL9','Kingston HyperX Fury','resources/Kingston HyperX Fury/s-l215.jpg',150,3,6),(3,'ASUS GeForce GT 440 1GB DDR5 HDMI DVI VGA PCI-e Graphics Card','ASUS GeForce GT440','resources/GT440/myF9E7-STYxr99CmVLZxkbw.jpg',90,2,0),(4,'Kingston Ssdnow Uv400 240Gb Sata Iii Solid State Drive','Kingston Ssdnow Uv400','resources/Kingston Ssdnow/s-l225.jpg',140,6,1),(5,'CORSAIR CS550M PSU MODULARE - 550 WATT','CORSAIR CS550M','resources/CORSAIR CS550M/s-l325.jpg',95,4,6),(6,'Game Max Proteus Black Gaming PC Midi Tower Case - USB 3.0','Game Max Proteus','resources/Game Max Proteus/m6yO04d6vRhOSxoIjmAuCbQ.jpg',70,5,4),(7,'ASUS P5Q Deluxe Motherboard, LGA775, Intel P45 + ICH10R, Dual DDR2, SATAII','ASUS P5Q Deluxe','resources/Asus P5Q Deluxe/28022777.jpg',40,7,0);
+/*!40000 ALTER TABLE car ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -110,7 +110,7 @@ CREATE TABLE `item_billable` (
   `itemId` int(11) NOT NULL,
   PRIMARY KEY (`itemId`,`billableId`),
   KEY `FKu1h60i0fx294lm10wvh8yn7k` (`billableId`),
-  CONSTRAINT `FKlvn5656gdfm6alrxlf1tr97t8` FOREIGN KEY (`itemId`) REFERENCES `item` (`id`),
+  CONSTRAINT `FKlvn5656gdfm6alrxlf1tr97t8` FOREIGN KEY (`itemId`) REFERENCES car (`id`),
   CONSTRAINT `FKu1h60i0fx294lm10wvh8yn7k` FOREIGN KEY (`billableId`) REFERENCES `billable` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -160,7 +160,7 @@ UNLOCK TABLES;
 -- Table structure for table `user_item`
 --
 
-DROP TABLE IF EXISTS `user_item`;
+DROP TABLE IF EXISTS users_cars;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_item` (
@@ -169,7 +169,7 @@ CREATE TABLE `user_item` (
   PRIMARY KEY (`userId`,`itemId`),
   KEY `FKr45cdg3l6qycg84idd2b8hlp1` (`itemId`),
   CONSTRAINT `FKqxpjkd4r6vmxbxs07q5caya0f` FOREIGN KEY (`userId`) REFERENCES `user` (`id`),
-  CONSTRAINT `FKr45cdg3l6qycg84idd2b8hlp1` FOREIGN KEY (`itemId`) REFERENCES `item` (`id`)
+  CONSTRAINT `FKr45cdg3l6qycg84idd2b8hlp1` FOREIGN KEY (`itemId`) REFERENCES car (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -177,9 +177,9 @@ CREATE TABLE `user_item` (
 -- Dumping data for table `user_item`
 --
 
-LOCK TABLES `user_item` WRITE;
-/*!40000 ALTER TABLE `user_item` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user_item` ENABLE KEYS */;
+LOCK TABLES users_cars WRITE;
+/*!40000 ALTER TABLE users_cars DISABLE KEYS */;
+/*!40000 ALTER TABLE users_cars ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

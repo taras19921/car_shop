@@ -28,8 +28,8 @@
                     <td><c:out value="${billable.localDateTime}" /></td>
                     <td><c:out value="${billable.user.name}" /></td>
                     <td>
-                    <c:forEach items="${billable.item}" var="item">
-                        <c:out value="${item.name}" /><br />
+                    <c:forEach items="${billable.car}" var="car">
+                        <c:out value="${car.name}" /><br />
                     </c:forEach>
                     </td>
                     <td><c:out value="${billable.price}" /></td>

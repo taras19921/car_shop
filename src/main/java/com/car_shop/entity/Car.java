@@ -5,16 +5,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="item")
-public class Item extends AbstractEntity
+@Table(name= "car")
+public class Car extends AbstractEntity
 {
-    @Column(name="itemName")
+    @Column(name= "name")
     private String name;
 
-    @Column(name="itemContent")
+    @Column(name= "content")
     private String content;
 
-    @Column(name="itemPrice")
+    @Column(name= "price")
     private int price;
 
     private int quantity;
@@ -23,37 +23,37 @@ public class Item extends AbstractEntity
     private String pathImage;
 
     @ManyToOne
-    private Category category;
+    private Brand brand;
 
     @ManyToMany
-    @JoinTable(name = "user_item",
-            joinColumns = @JoinColumn(name = "itemId"),
+    @JoinTable(name = "users_cars",
+            joinColumns = @JoinColumn(name = "carId"),
             inverseJoinColumns = @JoinColumn(name = "userId"))
     private Set<User> users = new HashSet<>();
 
     @ManyToMany
     @JoinTable(name = "item_billable",
-            joinColumns = @JoinColumn(name = "itemId"),
+            joinColumns = @JoinColumn(name = "carId"),
             inverseJoinColumns = @JoinColumn(name = "billableId"))
 
     private Set<Billable> billable = new HashSet<>();
 
-    public Item() {}
+    public Car() {}
 
-    public Item(String name, String content, int price, Category category) {
+    public Car(String name, String content, int price, Brand brand) {
         this.name = name;
         this.content = content;
         this.price = price;
         this.quantity = 1;
-        this.category = category;
+        this.brand = brand;
     }
 
-    public Item(String name, String content, int price, String pathImage, Category category) {
+    public Car(String name, String content, int price, String pathImage, Brand brand) {
         this.name = name;
         this.content = content;
         this.price = price;
         this.pathImage = pathImage;
-        this.category = category;
+        this.brand = brand;
     }
 
     public int getPrice() {
@@ -64,7 +64,7 @@ public class Item extends AbstractEntity
     public String toString()
     {
         return "Name: " + name + ", Content: " + content + ", Price: " + price
-                + ", Category: " + category;
+                + ", Category: " + brand;
     }
 
     public String getName() {
@@ -103,12 +103,12 @@ public class Item extends AbstractEntity
         this.pathImage = pathImage;
     }
 
-    public Category getCategory() {
-        return category;
+    public Brand getBrand() {
+        return brand;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 
     public Set<User> getUsers() {

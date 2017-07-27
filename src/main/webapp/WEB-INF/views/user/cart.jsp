@@ -11,10 +11,10 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <c:if test="${userCart.items.size() == 0}">
+            <c:if test="${userCart.cars.size() == 0}">
                 Cart is empty!!!
             </c:if>
-            <c:if test="${userCart.items.size() != 0}">
+            <c:if test="${userCart.cars.size() != 0}">
                 <th>Item Id</th>
                 <th>Name</th>
                 <th>Price</th>
@@ -26,24 +26,24 @@
         </tr>
         </thead>
         <tbody>
-        <form:form action="/buy" method="post">
-            <c:forEach items="${userCart.items}" var="item">
+        <form:form action="buy" method="post">
+            <c:forEach items="${userCart.cars}" var="car">
                 <tr>
-                    <td><c:out value="${item.id}"/></td>
-                    <td><c:out value="${item.name}"/></td>
-                    <td><c:out value="${item.price}"/></td>
-                    <td><c:out value="${item.content}"/></td>
-                    <td><c:out value="${item.category}"/></td>
+                    <td><c:out value="${car.id}"/></td>
+                    <td><c:out value="${car.name}"/></td>
+                    <td><c:out value="${car.price}"/></td>
+                    <td><c:out value="${car.content}"/></td>
+                    <td><c:out value="${car.brand}"/></td>
                     <td>
                         <label>
-                            <input type="number" name="itemQuantity" value="${item.quantity}" min="1">
+                            <input type="number" name="itemQuantity" value="${car.quantity}" min="1">
                         </label>
                     </td>
-                    <td><a href="/deleteFromCart/${userCart.id}/${item.id}">Delete</a>
+                    <td><a href="/deleteFromCart/${userCart.id}/${car.id}">Delete</a>
                     </td>
                 </tr>
             </c:forEach>
-            <c:if test="${userCart.items.size() != 0}">
+            <c:if test="${userCart.cars.size() != 0}">
                 <button class="btn btn-default">Buy</button>
             </c:if>
         </form:form>

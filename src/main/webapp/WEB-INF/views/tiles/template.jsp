@@ -5,6 +5,7 @@
 <head>
     <title>Car Shop</title>
     <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">
     <meta charset="UTF-8">
 </head>
 <body>

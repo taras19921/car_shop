@@ -17,31 +17,39 @@
       <exported-key name="FKu1h60i0fx294lm10wvh8yn7k" table="item_billable" schema="" catalog="yourpc" columns="billableId"/>
       <index name="FKm90e3b8i2f61n1hwyf9sq8gvr" unique="false" columns="user_id"/>
     </table>
-    <table name="category" schema="" catalog="yourpc" type="TABLE">
+    <table name="brand" schema="" catalog="yourpc" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="categoryName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <exported-key name="FK2n9w8d0dp4bsfra9dcg0046l4" table="item" schema="" catalog="yourpc" columns="category_id"/>
+      <exported-key name="FKhie4w6g67io9k67mf87clka9l" table="car" schema="" catalog="yourpc" columns="brand_id"/>
+      <exported-key name="FKj1mws2ruu9q6k2sa4pwlxthxn" table="car" schema="" catalog="yourpc" columns="brand_id"/>
     </table>
-    <table name="item" schema="" catalog="yourpc" type="TABLE">
+    <table name="car" schema="" catalog="yourpc" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="itemContent" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name="itemName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="content" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="image" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name="itemPrice" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="price" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="quantity" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="category_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="brand_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK2n9w8d0dp4bsfra9dcg0046l4" columns="category_id" ref-table="category" ref-schema="" ref-catalog="yourpc" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <exported-key name="FKlvn5656gdfm6alrxlf1tr97t8" table="item_billable" schema="" catalog="yourpc" columns="itemId"/>
-      <exported-key name="FKr45cdg3l6qycg84idd2b8hlp1" table="user_item" schema="" catalog="yourpc" columns="itemId"/>
-      <index name="FK2n9w8d0dp4bsfra9dcg0046l4" unique="false" columns="category_id"/>
+      <foreign-key name="FKhie4w6g67io9k67mf87clka9l" columns="brand_id" ref-table="brand" ref-schema="" ref-catalog="yourpc" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKj1mws2ruu9q6k2sa4pwlxthxn" columns="brand_id" ref-table="brand" ref-schema="" ref-catalog="yourpc" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK76nq6a9tmjho2yncgkdvtvjgr" table="item_billable" schema="" catalog="yourpc" columns="carId"/>
+      <exported-key name="FKlvn5656gdfm6alrxlf1tr97t8" table="item_billable" schema="" catalog="yourpc" columns="carId"/>
+      <exported-key name="FKrmm6hy5e0726ajafindx0psxl" table="item_billable" schema="" catalog="yourpc" columns="carId"/>
+      <exported-key name="FKktpcngqc2l1xf7hmqpjr6nqm" table="user_item" schema="" catalog="yourpc" columns="itemId"/>
+      <exported-key name="FK4e95qsnc6fw8am9go8a5728ku" table="users_cars" schema="" catalog="yourpc" columns="carId"/>
+      <exported-key name="FKr45cdg3l6qycg84idd2b8hlp1" table="users_cars" schema="" catalog="yourpc" columns="carId"/>
+      <index name="FKj1mws2ruu9q6k2sa4pwlxthxn" unique="false" columns="brand_id"/>
     </table>
     <table name="item_billable" schema="" catalog="yourpc" type="TABLE">
       <column name="billableId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="itemId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <primary-key name="PRIMARY" columns="itemId,billableId"/>
-      <foreign-key name="FKlvn5656gdfm6alrxlf1tr97t8" columns="itemId" ref-table="item" ref-schema="" ref-catalog="yourpc" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <column name="carId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="carId,billableId"/>
+      <foreign-key name="FK76nq6a9tmjho2yncgkdvtvjgr" columns="carId" ref-table="car" ref-schema="" ref-catalog="yourpc" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKlvn5656gdfm6alrxlf1tr97t8" columns="carId" ref-table="car" ref-schema="" ref-catalog="yourpc" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKrmm6hy5e0726ajafindx0psxl" columns="carId" ref-table="car" ref-schema="" ref-catalog="yourpc" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FKu1h60i0fx294lm10wvh8yn7k" columns="billableId" ref-table="billable" ref-schema="" ref-catalog="yourpc" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="FKu1h60i0fx294lm10wvh8yn7k" unique="false" columns="billableId"/>
     </table>
@@ -57,15 +65,25 @@
       <column name="uuId" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
       <exported-key name="FKm90e3b8i2f61n1hwyf9sq8gvr" table="billable" schema="" catalog="yourpc" columns="user_id"/>
-      <exported-key name="FKqxpjkd4r6vmxbxs07q5caya0f" table="user_item" schema="" catalog="yourpc" columns="userId"/>
+      <exported-key name="FKprbqe3rggefmxrnouxhrgapt2" table="users_cars" schema="" catalog="yourpc" columns="userId"/>
+      <exported-key name="FKqxpjkd4r6vmxbxs07q5caya0f" table="users_cars" schema="" catalog="yourpc" columns="userId"/>
     </table>
     <table name="user_item" schema="" catalog="yourpc" type="TABLE">
-      <column name="userId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="itemId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <primary-key name="PRIMARY" columns="itemId,userId"/>
+      <column name="userId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="userId,itemId"/>
+      <foreign-key name="FKktpcngqc2l1xf7hmqpjr6nqm" columns="itemId" ref-table="car" ref-schema="" ref-catalog="yourpc" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FKktpcngqc2l1xf7hmqpjr6nqm" unique="false" columns="itemId"/>
+    </table>
+    <table name="users_cars" schema="" catalog="yourpc" type="TABLE">
+      <column name="userId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="carId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="carId,userId"/>
+      <foreign-key name="FK4e95qsnc6fw8am9go8a5728ku" columns="carId" ref-table="car" ref-schema="" ref-catalog="yourpc" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKprbqe3rggefmxrnouxhrgapt2" columns="userId" ref-table="user" ref-schema="" ref-catalog="yourpc" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FKqxpjkd4r6vmxbxs07q5caya0f" columns="userId" ref-table="user" ref-schema="" ref-catalog="yourpc" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FKr45cdg3l6qycg84idd2b8hlp1" columns="itemId" ref-table="item" ref-schema="" ref-catalog="yourpc" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <index name="FKqxpjkd4r6vmxbxs07q5caya0f" unique="false" columns="userId"/>
+      <foreign-key name="FKr45cdg3l6qycg84idd2b8hlp1" columns="carId" ref-table="car" ref-schema="" ref-catalog="yourpc" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FKprbqe3rggefmxrnouxhrgapt2" unique="false" columns="userId"/>
     </table>
   </data-source>
 </component>

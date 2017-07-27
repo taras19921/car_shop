@@ -3,10 +3,10 @@ package com.car_shop.controller;
 import com.car_shop.editors.ItemEditor;
 import com.car_shop.editors.UserEditor;
 import com.car_shop.entity.Billable;
-import com.car_shop.entity.Item;
+import com.car_shop.entity.Car;
 import com.car_shop.entity.User;
 import com.car_shop.service.BillableService;
-import com.car_shop.service.ItemService;
+import com.car_shop.service.CarService;
 import com.car_shop.service.UserService;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,26 +28,26 @@ public class CarController {
 
     private final UserService userService;
 
-    private final ItemService itemService;
+    private final CarService carService;
 
     @Autowired
-    public CarController(BillableService billableService, UserService userService, ItemService itemService) {
+    public CarController(BillableService billableService, UserService userService, CarService carService) {
         this.billableService = billableService;
         this.userService = userService;
-        this.itemService = itemService;
+        this.carService = carService;
     }
 
     @InitBinder
     public void init(WebDataBinder binder) {
         binder.registerCustomEditor(User.class, new UserEditor());
-        binder.registerCustomEditor(Item.class, new ItemEditor());
+        binder.registerCustomEditor(Car.class, new ItemEditor());
     }
 
     @GetMapping(value = "/billable")
     public String addBillable(Model model) {
         model.addAttribute("billable", new Billable());
         model.addAttribute("users", userService.getAll());
-        model.addAttribute("items", itemService.getAll());
+        model.addAttribute("cars", carService.getAll());
         return "views-admin-billable";
     }
 
@@ -67,9 +67,9 @@ public class CarController {
     public String getBillable(@PathVariable int id, Model model) {
         model.addAttribute("billableAttribute", billableService.getOne(id));
         Billable billable = billableService.getOne(id);
-        Hibernate.initialize(billable.getItem());
+        Hibernate.initialize(billable.getCar());
         model.addAttribute("users", userService.getAll());
-        model.addAttribute("items", itemService.getAll());
+        model.addAttribute("cars", carService.getAll());
         return "views-admin-updateBillable";
     }
 
@@ -86,7 +86,7 @@ public class CarController {
         Billable billable = billableService.getOne(id);
         billableService.getTotalPrice(id);
         model.addAttribute("billable", billable);
-        Hibernate.initialize(billable.getItem());
+        Hibernate.initialize(billable.getCar());
         return "views-user-billableDetails";
     }
 
@@ -94,13 +94,13 @@ public class CarController {
     public String allBillables(Model model, @PageableDefault Pageable pageable) {
         Set<Billable> billables = billableService.getBillableWithItems();
         for (Billable billable : billables) {
-            Hibernate.initialize(billable.getItem());
+            Hibernate.initialize(billable.getCar());
         }
         model.addAttribute("billables", billableService.findAllPages(pageable));
         return "views-admin-listOfBillables";
     }
 
-    @GetMapping("/addToCart/{id}")
+    @GetMapping("addToCart/{id}")
     public String addToCart(Principal principal, @PathVariable int id) {
         billableService.makeSleep();
         billableService.addToCart(principal, id);
@@ -116,9 +116,9 @@ public class CarController {
     @PostMapping("/buy")
     public String buy(Principal principal, @ModelAttribute("itemQuantity") Integer itemQuantity) {
         User user = userService.getOne(Integer.parseInt(principal.getName()));
-        for (Item item : user.getItems()) {
-            item.setQuantity(itemQuantity);
-            itemService.update(item);
+        for (Car car : user.getCars()) {
+            car.setQuantity(itemQuantity);
+            carService.update(car);
         }
         billableService.buy(Integer.parseInt(principal.getName()));
         return "redirect:/profile";

@@ -19,7 +19,7 @@
 
         <tr>
             <td><form:label path="item">Items:</form:label></td>
-            <td><form:select multiple="true" path="item" items="${items}" itemLabel="name" itemValue="id"/></td>
+            <td><form:select multiple="true" path="item" items="${cars}" itemLabel="name" itemValue="id"/></td>
         </tr>
     </table>
     <input type="submit" value="Save" />

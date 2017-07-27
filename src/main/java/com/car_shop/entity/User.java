@@ -33,10 +33,10 @@ public class User extends AbstractEntity implements UserDetails
     private String uuId;
 
     @ManyToMany
-    @JoinTable(name = "user_item",
+    @JoinTable(name = "users_cars",
             joinColumns = @JoinColumn(name = "userId"),
-            inverseJoinColumns = @JoinColumn(name = "itemId"))
-    private Set<Item> items = new HashSet<>();
+            inverseJoinColumns = @JoinColumn(name = "carId"))
+    private Set<Car> cars = new HashSet<>();
 
     @OneToMany(mappedBy = "user")
 
@@ -169,12 +169,12 @@ public class User extends AbstractEntity implements UserDetails
         this.uuId = uuId;
     }
 
-    public Set<Item> getItems() {
-        return items;
+    public Set<Car> getCars() {
+        return cars;
     }
 
-    public void setItems(Set<Item> items) {
-        this.items = items;
+    public void setCars(Set<Car> cars) {
+        this.cars = cars;
     }
 
     public Set<Billable> getBillable() {

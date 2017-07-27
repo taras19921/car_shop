@@ -5,7 +5,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 
-<link rel="stylesheet" href="/resources/css/index.css">
+<%--<link rel="stylesheet" href="/resources/css/index.css">--%>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -31,6 +31,8 @@
         searchCategories();
     });
 </script>
+
+<div>
 
 <div style="margin-bottom: 10px; margin-top: 10px; width: 20%; float: right; padding-right: 10px">
     <div data-role="rangeslider">
@@ -69,14 +71,14 @@
     <span style="margin-top: 90px"><i class="cart_anchor"></i></span>
 
     <div class="clear"></div>
-    <div id="searchDiv" class="items">
-        <c:forEach items="${items.content}" var="item">
-            <div class="item">
-                <img src="${item.pathImage}" alt="">
-                <h2><c:out value="${item.name}"/><p style="float: right">$<em>${item.price}</em></p></h2>
+    <div id="searchDiv" class="cars">
+        <c:forEach items="${cars.content}" var="car">
+            <div class="car">
+                <img src="${car.pathImage}" alt="">
+                <h2><c:out value="${car.name}"/><p style="float: right">$<em>${car.price}</em></p></h2>
                 <sec:authorize access="isAuthenticated() && hasRole('ROLE_USER')">
                     <button style="margin: auto; display: block;" class="add-to-cart"
-                            onclick="window.location.href='/addToCart/${item.id}'">AddToCart
+                            onclick="window.location.href='addToCart/${car.id}'">AddToCart
                     </button>
                 </sec:authorize>
             </div>
@@ -103,10 +105,10 @@
             </div>
 
             <div class="col-md-8 col-xs-12 text-center">
-                <custom:pageable page="${items}" cell="<li></li>" container="<ul class='pagination'></ul>"/>
+                <custom:pageable page="${cars}" cell="<li></li>" container="<ul class='pagination'></ul>"/>
             </div>
             <div class="col-md-2 col-xs-6">
-                <custom:size posibleSizes="1,2,5,10,20" size="${items.size}"/>
+                <custom:size posibleSizes="1,2,5,10,20" size="${cars.size}"/>
             </div>
         </div>
     </div>
@@ -116,3 +118,4 @@
        value="${_csrf.parameterName}"/>
 <input type="hidden" name="csrf_value"
        value="${_csrf.token}"/>
+</div>

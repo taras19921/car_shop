@@ -120,7 +120,7 @@ public class UserController
         Set<Billable> billable = user.getBillable();
         for (Billable billable1: billable)
         {
-            Hibernate.initialize(billable1.getItem());
+            Hibernate.initialize(billable1.getCar());
         }
         model.addAttribute("user", user);
         return "views-user-profile";

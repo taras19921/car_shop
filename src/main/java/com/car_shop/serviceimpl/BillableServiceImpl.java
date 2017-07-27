@@ -1,10 +1,10 @@
 package com.car_shop.serviceimpl;
 
 import com.car_shop.dao.BillableDao;
-import com.car_shop.dao.ItemDao;
+import com.car_shop.dao.CarDao;
 import com.car_shop.dao.UserDao;
 import com.car_shop.entity.Billable;
-import com.car_shop.entity.Item;
+import com.car_shop.entity.Car;
 import com.car_shop.entity.User;
 import com.car_shop.service.BillableService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +24,14 @@ public class BillableServiceImpl implements BillableService
 
     private final UserDao userDao;
 
-    private final ItemDao itemDao;
+    private final CarDao carDao;
 
     @Autowired
-    public BillableServiceImpl(BillableDao billableDao, UserDao userDao, ItemDao itemDao)
+    public BillableServiceImpl(BillableDao billableDao, UserDao userDao, CarDao carDao)
     {
         this.billableDao = billableDao;
         this.userDao = userDao;
-        this.itemDao = itemDao;
+        this.carDao = carDao;
     }
 
     public void add(Billable billable)
@@ -68,8 +68,8 @@ public class BillableServiceImpl implements BillableService
     public void addToCart(Principal principal, int id)
     {
         User user = userDao.userWithItems(Integer.parseInt(principal.getName()));
-        Item item = itemDao.getOne(id);
-        user.getItems().add(item);
+        Car car = carDao.getOne(id);
+        user.getCars().add(car);
         userDao.save(user);
     }
 
@@ -77,8 +77,8 @@ public class BillableServiceImpl implements BillableService
     public void deleteFromCart(int userId, int itemId)
     {
         User user = userDao.userWithItems(userId);
-        Item item = itemDao.itemWithUsers(itemId);
-        user.getItems().remove(item);
+        Car car = carDao.itemWithUsers(itemId);
+        user.getCars().remove(car);
         userDao.save(user);
     }
 
@@ -89,13 +89,13 @@ public class BillableServiceImpl implements BillableService
         billableDao.saveAndFlush(billable);
         User user = userDao.userWithItems(userId);
         billable.setUser(user);
-        for (Item item: user.getItems())
+        for (Car car : user.getCars())
         {
-            billable.getItem().add(item);
+            billable.getCar().add(car);
             billableDao.save(billable);
         }
 
-        user.getItems().clear();
+        user.getCars().clear();
         userDao.save(user);
     }
 
@@ -104,9 +104,9 @@ public class BillableServiceImpl implements BillableService
     {
         Billable billable = billableDao.getOne(id);
         int price = 0 ;
-        for (Item item: billable.getItem())
+        for (Car car : billable.getCar())
         {
-            price += item.getPrice() * item.getQuantity();
+            price += car.getPrice() * car.getQuantity();
             billable.setPrice(price);
         }
     }

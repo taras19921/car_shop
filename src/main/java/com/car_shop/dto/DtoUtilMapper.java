@@ -1,7 +1,7 @@
 package com.car_shop.dto;
 
-import com.car_shop.entity.Category;
-import com.car_shop.entity.Item;
+import com.car_shop.entity.Brand;
+import com.car_shop.entity.Car;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,37 +9,37 @@ import java.util.List;
 public class DtoUtilMapper
 {
 
-    public static ItemDto itemToItemDto(Item item)
+    public static CarDto itemToItemDto(Car car)
     {
-        return new ItemDto(item.getId(), item.getName(), item.getContent(), item.getPrice(), item.getPathImage(), categoryWithoutItems(item.getCategory()));
+        return new CarDto(car.getId(), car.getName(), car.getContent(), car.getPrice(), car.getPathImage(), categoryWithoutItems(car.getBrand()));
     }
 
-    public static Category categoryWithoutItems(Category category)
+    public static Brand categoryWithoutItems(Brand brand)
     {
-        return new Category(category.getName());
+        return new Brand(brand.getName());
     }
 
 
-    public static List<CategoryDto> categoriesToCategoriesDtos(List<Category> categories)
+    public static List<BrandDto> categoriesToCategoriesDtos(List<Brand> categories)
     {
-        List<CategoryDto> categoryDtos = new ArrayList<CategoryDto>();
+        List<BrandDto> brandDtos = new ArrayList<BrandDto>();
 
-        for (Category category : categories)
+        for (Brand brand : categories)
         {
-            categoryDtos.add(new CategoryDto(category.getId(), category.getName()));
+            brandDtos.add(new BrandDto(brand.getId(), brand.getName()));
         }
-        return categoryDtos;
+        return brandDtos;
     }
 
-    public static List<ItemDto> itemsToItemsDtos(List<Item> items)
+    public static List<CarDto> itemsToItemsDtos(List<Car> cars)
     {
-        List<ItemDto> itemDtos = new ArrayList<>();
+        List<CarDto> carDtos = new ArrayList<>();
 
-        for (Item item : items)
+        for (Car car : cars)
         {
-            ItemDto itemDto = itemToItemDto(item);
-            itemDtos.add(itemDto);
+            CarDto carDto = itemToItemDto(car);
+            carDtos.add(carDto);
         }
-        return itemDtos;
+        return carDtos;
     }
 }

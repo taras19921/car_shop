@@ -1,8 +1,8 @@
 package com.car_shop.serviceimpl;
 
-import com.car_shop.dao.ItemDao;
-import com.car_shop.entity.Item;
-import com.car_shop.service.ItemService;
+import com.car_shop.dao.CarDao;
+import com.car_shop.entity.Car;
+import com.car_shop.service.CarService;
 import com.car_shop.validator.Validator;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,26 +17,26 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
-public class ItemServiceImpl implements ItemService
+public class CarServiceImpl implements CarService
 {
-    private final ItemDao itemDao;
+    private final CarDao carDao;
 
     private final Validator validator;
 
     @Autowired
-    public ItemServiceImpl(ItemDao itemDao, @Qualifier("itemValidator") Validator validator)
+    public CarServiceImpl(CarDao carDao, @Qualifier("itemValidator") Validator validator)
     {
-        this.itemDao = itemDao;
+        this.carDao = carDao;
         this.validator = validator;
     }
 
-    public void add(Item item, MultipartFile multipartFile) throws Exception
+    public void add(Car car, MultipartFile multipartFile) throws Exception
     {
-        validator.validate(item);
+        validator.validate(car);
         String path = "E:" + File.separator + "Downloads" + File.separator + "apache-tomcat-8.0.43" + File.separator + "resources" + File.separator +
-                item.getName() + File.separator + multipartFile.getOriginalFilename();
+                car.getName() + File.separator + multipartFile.getOriginalFilename();
 
-        item.setPathImage("resources" + File.separator + item.getName() + File.separator + multipartFile.getOriginalFilename());
+        car.setPathImage("resources" + File.separator + car.getName() + File.separator + multipartFile.getOriginalFilename());
 
         File file = new File(path);
 
@@ -52,20 +52,20 @@ public class ItemServiceImpl implements ItemService
         {
             System.out.println("error with file");
         }
-        itemDao.save(item);
+        carDao.save(car);
     }
 
     public void delete(int id)
     {
-        itemDao.delete(id);
+        carDao.delete(id);
     }
 
-    public void update(Item item, MultipartFile multipartFile)
+    public void update(Car car, MultipartFile multipartFile)
     {
         String path = "E:" + File.separator + "Downloads" + File.separator + "apache-tomcat-8.0.43" + File.separator + "resources" + File.separator +
-                item.getName() + File.separator + multipartFile.getOriginalFilename();
+                car.getName() + File.separator + multipartFile.getOriginalFilename();
 
-        item.setPathImage("resources" + File.separator + item.getName() + File.separator + multipartFile.getOriginalFilename());
+        car.setPathImage("resources" + File.separator + car.getName() + File.separator + multipartFile.getOriginalFilename());
 
         File file = new File(path);
 
@@ -76,7 +76,7 @@ public class ItemServiceImpl implements ItemService
             {
                 FileUtils.cleanDirectory
                         (new File(System.getProperty("catalina.home") + File.separator +"resources" + File.separator
-                                + item.getName() + File.separator));
+                                + car.getName() + File.separator));
             }
             catch (IOException e)
             {
@@ -88,28 +88,28 @@ public class ItemServiceImpl implements ItemService
         {
             System.out.println("error with file");
         }
-        itemDao.save(item);
+        carDao.save(car);
     }
 
-    public Item getOne(int id)
+    public Car getOne(int id)
     {
-        return itemDao.findOne(id);
+        return carDao.findOne(id);
     }
 
-    public List<Item> getAll()
+    public List<Car> getAll()
     {
-        return itemDao.findAll();
-    }
-
-    @Override
-    public Page<Item> findAllPages(Pageable pageable)
-    {
-        return itemDao.findAll(pageable);
+        return carDao.findAll();
     }
 
     @Override
-    public void update(Item item)
+    public Page<Car> findAllPages(Pageable pageable)
     {
-        itemDao.save(item);
+        return carDao.findAll(pageable);
+    }
+
+    @Override
+    public void update(Car car)
+    {
+        carDao.save(car);
     }
 }

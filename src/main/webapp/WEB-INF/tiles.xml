@@ -10,6 +10,6 @@
     </definition>
 
     <definition name="*-*-*" extends="base.definition">
-        <put-attribute name="body" value="/{1}/{2}/{3}.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/{2}/{3}.jsp"/>
     </definition>
 </tiles-definitions>

@@ -13,7 +13,7 @@
 <div>
     <div class="container">
 
-        <form action="<c:url value="/item"/>" style="float: left; margin-top: 10px">
+        <form action="<c:url value="/car"/>" style="float: left; margin-top: 10px">
             <input type="submit" value="AddItem"/>
         </form>
 
@@ -35,16 +35,16 @@
             </tr>
             </thead>
             <tbody id="searchResult">
-            <c:forEach items="${items.content}" var="item">
+            <c:forEach items="${cars.content}" var="car">
                 <tr>
-                    <td><c:out value="${item.id}"/></td>
-                    <td><c:out value="${item.name}"/></td>
-                    <td><c:out value="${item.price}"/></td>
-                    <td><c:out value="${item.content}"/></td>
-                    <td><c:out value="${item.category}"/></td>
-                    <td><img src="${item.pathImage}" alt=""></td>
-                    <td><a href="/deleteItem/${item.id}">Delete</a></td>
-                    <td><a href="/updateItem/${item.id}">Update</a></td>
+                    <td><c:out value="${car.id}"/></td>
+                    <td><c:out value="${car.name}"/></td>
+                    <td><c:out value="${car.price}"/></td>
+                    <td><c:out value="${car.content}"/></td>
+                    <td><c:out value="${car.category}"/></td>
+                    <td><img src="${car.pathImage}" alt=""></td>
+                    <td><a href="/deleteItem/${car.id}">Delete</a></td>
+                    <td><a href="/updateItem/${car.id}">Update</a></td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -70,10 +70,10 @@
                 </div>
             </div>
             <div class="col-md-8 col-xs-12 text-center">
-                <custom:pageable page="${items}" cell="<li></li>" container="<ul class='pagination'></ul>"/>
+                <custom:pageable page="${cars}" cell="<li></li>" container="<ul class='pagination'></ul>"/>
             </div>
             <div class="col-md-2 col-xs-6">
-                <custom:size posibleSizes="1,2,5,10" size="${items.size}"/>
+                <custom:size posibleSizes="1,2,5,10" size="${cars.size}"/>
             </div>
         </div>
     </div>

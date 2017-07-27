@@ -1,6 +1,6 @@
 package com.car_shop.controller;
 
-import com.car_shop.service.ItemService;
+import com.car_shop.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Transactional
 public class MainController
 {
-    private final ItemService itemService;
+    private final CarService carService;
 
     @Autowired
-    public MainController(ItemService itemService)
+    public MainController(CarService carService)
     {
-        this.itemService = itemService;
+        this.carService = carService;
     }
 
     @GetMapping("/")
     public String index(Model model, @PageableDefault Pageable pageable)
     {
-        model.addAttribute("items", itemService.findAllPages(pageable));
+        model.addAttribute("cars", carService.findAllPages(pageable));
         return "views-base-index";
     }
 
@@ -35,12 +35,12 @@ public class MainController
     {
         if(username.equals("admin"))
         {
-            model.addAttribute("items", itemService.findAllPages(pageable));
+            model.addAttribute("cars", carService.findAllPages(pageable));
             return "views-admin-listOfItems";
         }
         else
         {
-            model.addAttribute("items", itemService.findAllPages(pageable));
+            model.addAttribute("cars", carService.findAllPages(pageable));
             return "views-base-index";
         }
     }

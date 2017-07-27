@@ -1,9 +1,9 @@
 package com.car_shop.serviceimpl;
 
-import com.car_shop.dao.CategoryDao;
-import com.car_shop.dao.ItemDao;
-import com.car_shop.entity.Category;
-import com.car_shop.entity.Item;
+import com.car_shop.dao.BrandDao;
+import com.car_shop.dao.CarDao;
+import com.car_shop.entity.Brand;
+import com.car_shop.entity.Car;
 import com.car_shop.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,47 +13,47 @@ import java.util.List;
 @Service
 public class CategoryServiceImpl implements CategoryService
 {
-    private final CategoryDao categoryDao;
+    private final BrandDao brandDao;
 
-    private final ItemDao itemDao;
+    private final CarDao carDao;
 
     @Autowired
-    public CategoryServiceImpl(CategoryDao categoryDao, ItemDao itemDao)
+    public CategoryServiceImpl(BrandDao brandDao, CarDao carDao)
     {
-        this.categoryDao = categoryDao;
-        this.itemDao = itemDao;
+        this.brandDao = brandDao;
+        this.carDao = carDao;
     }
 
-    public void add(Category category){
-        categoryDao.save(category);
+    public void add(Brand brand){
+        brandDao.save(brand);
     }
 
     public void delete(int id)
     {
-        Category category = categoryDao.categoryWithItems(id);
+        Brand brand = brandDao.categoryWithItems(id);
 
-        for (Item item : category.getItem())
+        for (Car car : brand.getCar())
         {
-            item.setCategory(null);
-            itemDao.saveAndFlush(item);
+            car.setBrand(null);
+            carDao.saveAndFlush(car);
         }
-        categoryDao.delete(id);
+        brandDao.delete(id);
     }
 
     public void update(String categoryInfo)
     {
-        Category category = categoryDao.findOne(Integer.parseInt(categoryInfo.split("_")[1]));
-        category.setName(categoryInfo.split("_")[0]);
-        categoryDao.save(category);
+        Brand brand = brandDao.findOne(Integer.parseInt(categoryInfo.split("_")[1]));
+        brand.setName(categoryInfo.split("_")[0]);
+        brandDao.save(brand);
     }
 
-    public Category getOne(int id)
+    public Brand getOne(int id)
     {
-        return categoryDao.findOne(id);
+        return brandDao.findOne(id);
     }
 
-    public List<Category> getAll()
+    public List<Brand> getAll()
     {
-        return categoryDao.findAll();
+        return brandDao.findAll();
     }
 }
