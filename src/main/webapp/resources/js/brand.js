@@ -1,4 +1,4 @@
-$('#saveCategory').click(function () {
+$('#saveBrand').click(function () {
 
     loadCategoryNames();
 
@@ -15,7 +15,7 @@ $('#saveCategory').click(function () {
 
         $.ajax({
 
-            url: '/category?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
+            url: 'brand?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
             method: 'GET',
             success: function (res) {
                 for (var i in res) {
@@ -40,7 +40,7 @@ $('#saveCategory').click(function () {
                 else{
                     $.ajax({
 
-                        url: '/category?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
+                        url: 'brand?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
                         method: 'POST',
                         dataType: 'json',
                         contentType: 'application/json; charset=UTF-8',
@@ -73,7 +73,7 @@ function deleteCategory(categoryId) {
 
     $.ajax({
 
-        url: '/category?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
+        url: 'brand?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
         method: 'DELETE',
         data: JSON.stringify(categoryId),
         success: function (res) {
@@ -89,7 +89,7 @@ function deleteCategory(categoryId) {
 function loadCategories() {
     $.ajax({
 
-        url: '/category?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
+        url: 'brand?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
         method: 'GET',
         success: function (res) {
             parseResultFromDb(res);
@@ -106,14 +106,14 @@ function updateCategory(categoryId) {
 
     $.ajax({
 
-        url: '/category?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
+        url: 'brand?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
         method: 'GET',
         success: function (res) {
             var categoriesFromDb = '';
             for (var i in res) {
 
                 if (res[i].id == categoryId) {
-                    categoriesFromDb += '<tr><td><input type="text" class="form-control" value="' + res[i].name + '" id="newCategoryName"></td><td><button class="btn btn-default save" onclick="saveCategoryUpdates(' + res[i].id + ')">Save</button></td></tr>';
+                    categoriesFromDb += '<tr><td><input type="text" class="form-control" value="' + res[i].name + '" id="newCategoryName"></td><td><button class="btn btn-default save" onclick="saveBrandUpdates(' + res[i].id + ')">Save</button></td></tr>';
                 } else {
                     categoriesFromDb += '<tr><td id=' + res[i].id + "category" + '>' + res[i].name + '</td><td></td></tr>';
                 }
@@ -127,13 +127,13 @@ function updateCategory(categoryId) {
     })
 }
 
-function saveCategoryUpdates(categoryId) {
+function saveBrandUpdates(categoryId) {
 
     var newName = $('#newCategoryName').val();
 
     $.ajax({
 
-        url: '/category?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
+        url: 'brand?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
         method: 'PUT',
         data: newName + '_' + categoryId,
         success: function (res) {

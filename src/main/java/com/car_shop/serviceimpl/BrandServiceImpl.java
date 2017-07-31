@@ -4,21 +4,21 @@ import com.car_shop.dao.BrandDao;
 import com.car_shop.dao.CarDao;
 import com.car_shop.entity.Brand;
 import com.car_shop.entity.Car;
-import com.car_shop.service.CategoryService;
+import com.car_shop.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CategoryServiceImpl implements CategoryService
+public class BrandServiceImpl implements BrandService
 {
     private final BrandDao brandDao;
 
     private final CarDao carDao;
 
     @Autowired
-    public CategoryServiceImpl(BrandDao brandDao, CarDao carDao)
+    public BrandServiceImpl(BrandDao brandDao, CarDao carDao)
     {
         this.brandDao = brandDao;
         this.carDao = carDao;

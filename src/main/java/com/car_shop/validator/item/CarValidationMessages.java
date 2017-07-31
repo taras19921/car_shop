@@ -1,6 +1,6 @@
 package com.car_shop.validator.item;
 
-public interface ItemValidationMessages
+public interface CarValidationMessages
 {
     String EMPTY_ITEMNAME_FIELD = "EMPTY ITEMNAME FILED";
     String ITEMNAME_ALREADY_EXIST = "ITEMNAME ALREADY EXIST";

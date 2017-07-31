@@ -17,22 +17,12 @@
             </sec:authorize>
             <sec:authorize access="hasRole('ROLE_ADMIN')">
                 <a href="<c:url value="/listOfUsers"/>">Users</a>
-                <a href="<c:url value="/listOfItems"/>">Items</a>
-                <a href="<c:url value="/openCategoryView"/>">Categories</a>
+                <a href="<c:url value="/listOfCars"/>">Cars</a>
+                <a href="<c:url value="/brands"/>">Brands</a>
                 <a href="<c:url value="/listOfBillables"/>">Billables</a>
             </sec:authorize>
-            <div class="dropdown" style="float: right;">
-            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                Lang <span class="caret"></span> </a>
-            <ul class="dropdown-menu" role="menu" style="margin: 1%; padding: 0">
-                <li><span onclick="window.location.href='../../../'">ua</span></li>
-                <li><span onclick="window.location.href='../../../'">en</span></li>
-            </ul>
-            </div>
             <sec:authorize access="isAuthenticated()">
-                <form:form action="/logout" method="post">
-                    <button class="btn btn-default">Logout</button>
-                </form:form>
+                <a href="<c:url value="/logout"/>">Logout</a>
             </sec:authorize>
         </nav>
     </div>

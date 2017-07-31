@@ -36,7 +36,7 @@ public class MainController
         if(username.equals("admin"))
         {
             model.addAttribute("cars", carService.findAllPages(pageable));
-            return "views-admin-listOfItems";
+            return "views-admin-listOfCars";
         }
         else
         {
@@ -45,9 +45,9 @@ public class MainController
         }
     }
 
-    @GetMapping("/openCategoryView")
+    @GetMapping("/brands")
     public String category(){
-        return "views-admin-category";
+        return "views-admin-brand";
     }
 
 }

@@ -43,9 +43,16 @@
                 <input name="password" type="password" class="input" id="user_pass" autocomplete="off"
                        placeholder="Password">
                 <input type="submit" class="button" value="Login">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
         </div>
     </div>
+
+    <input type="hidden" name="csrf_name"
+           value="${_csrf.parameterName}"/>
+    <input type="hidden" name="csrf_value"
+           value="${_csrf.token}"/>
 </div>
+
+
 

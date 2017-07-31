@@ -4,7 +4,6 @@ import com.car_shop.dao.CarDao;
 import com.car_shop.entity.Car;
 import com.car_shop.service.CarService;
 import com.car_shop.validator.Validator;
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
@@ -24,7 +23,7 @@ public class CarServiceImpl implements CarService
     private final Validator validator;
 
     @Autowired
-    public CarServiceImpl(CarDao carDao, @Qualifier("itemValidator") Validator validator)
+    public CarServiceImpl(CarDao carDao, @Qualifier("carValidator") Validator validator)
     {
         this.carDao = carDao;
         this.validator = validator;
@@ -33,10 +32,10 @@ public class CarServiceImpl implements CarService
     public void add(Car car, MultipartFile multipartFile) throws Exception
     {
         validator.validate(car);
-        String path = "E:" + File.separator + "Downloads" + File.separator + "apache-tomcat-8.0.43" + File.separator + "resources" + File.separator +
+        String path = "C:" + File.separator + "apache-tomcat-7.0.79" + File.separator + "resources" + File.separator +
                 car.getName() + File.separator + multipartFile.getOriginalFilename();
 
-        car.setPathImage("resources" + File.separator + car.getName() + File.separator + multipartFile.getOriginalFilename());
+        car.setPathImage("resources" + "/" + car.getName() + "/" + multipartFile.getOriginalFilename());
 
         File file = new File(path);
 
@@ -62,26 +61,16 @@ public class CarServiceImpl implements CarService
 
     public void update(Car car, MultipartFile multipartFile)
     {
-        String path = "E:" + File.separator + "Downloads" + File.separator + "apache-tomcat-8.0.43" + File.separator + "resources" + File.separator +
-                car.getName() + File.separator + multipartFile.getOriginalFilename();
+        String path = "C:" + File.separator + "apache-tomcat-7.0.79" + File.separator + "resources" + "/" +
+                car.getName() + "/" + multipartFile.getOriginalFilename();
 
-        car.setPathImage("resources" + File.separator + car.getName() + File.separator + multipartFile.getOriginalFilename());
+        car.setPathImage("resources" + "/" + car.getName() + "/" + multipartFile.getOriginalFilename());
 
         File file = new File(path);
 
         try
         {
             file.mkdirs();
-            try
-            {
-                FileUtils.cleanDirectory
-                        (new File(System.getProperty("catalina.home") + File.separator +"resources" + File.separator
-                                + car.getName() + File.separator));
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
             multipartFile.transferTo(file);
         }
         catch (IOException e)

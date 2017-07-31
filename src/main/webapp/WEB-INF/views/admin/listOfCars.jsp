@@ -5,6 +5,7 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -14,11 +15,11 @@
     <div class="container">
 
         <form action="<c:url value="/car"/>" style="float: left; margin-top: 10px">
-            <input type="submit" value="AddItem"/>
+            <input type="submit" value="Add Car"/>
         </form>
 
         <div style="float: right; margin-top: 10px">
-            <input type="text" class="form-control" id="searchIn" oninput="searchInTable()"
+            <input type="text" class="form-control" id="searchIn" oninput="searchInTable();"
                    placeholder="Search..."/>
         </div>
 
@@ -29,7 +30,6 @@
                 <th>Name</th>
                 <th>Price</th>
                 <th>Content</th>
-                <th>Category</th>
                 <th>Image</th>
                 <th colspan=2>Action</th>
             </tr>
@@ -41,10 +41,9 @@
                     <td><c:out value="${car.name}"/></td>
                     <td><c:out value="${car.price}"/></td>
                     <td><c:out value="${car.content}"/></td>
-                    <td><c:out value="${car.category}"/></td>
                     <td><img src="${car.pathImage}" alt=""></td>
-                    <td><a href="/deleteItem/${car.id}">Delete</a></td>
-                    <td><a href="/updateItem/${car.id}">Update</a></td>
+                    <td><a href="/car_shop/deleteCar/${car.id}">Delete</a></td>
+                    <td><a href="/car_shop/updateCar/${car.id}">Update</a></td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -73,7 +72,7 @@
                 <custom:pageable page="${cars}" cell="<li></li>" container="<ul class='pagination'></ul>"/>
             </div>
             <div class="col-md-2 col-xs-6">
-                <custom:size posibleSizes="1,2,5,10" size="${cars.size}"/>
+                <custom:size posibleSizes="1,2,5,10,25,50,100" size="${cars.size}"/>
             </div>
         </div>
     </div>

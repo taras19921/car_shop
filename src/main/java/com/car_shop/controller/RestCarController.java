@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class RestItemController
+public class RestCarController
 {
     private final CarService carService;
 
     @Autowired
-    public RestItemController(CarService carService) {
+    public RestCarController(CarService carService) {
         this.carService = carService;
     }
 
-    @GetMapping("/itemSearch")
-    public List<CarDto> loadItems()
+    @GetMapping("/carSearch")
+    public List<CarDto> loadCars()
     {
         return DtoUtilMapper.itemsToItemsDtos(carService.getAll());
     }

@@ -11,8 +11,8 @@
         <div style="display: flex; justify-content: center ">
             <div class="form-group">
                 <input type="text" class="form-control" id="categoryName"
-                       placeholder="category name"/>
-                <button class="btn btn-default" id="saveCategory">AddCategory</button>
+                       placeholder="brand name"/>
+                <button class="btn btn-default" id="saveBrand">Add Brand</button>
             </div>
         </div>
         <table class="table table-hover">
@@ -33,5 +33,5 @@
 <input type="hidden" name="csrf_value"
        value="${_csrf.token}" />
 
-<script src="<c:url value="/resources/js/category.js"/>"></script>
+<script src="<c:url value="/resources/js/brand.js"/>"></script>
 

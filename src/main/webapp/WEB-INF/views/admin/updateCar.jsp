@@ -4,8 +4,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<c:url var="save" value="/updateItem/${itemAttribute.id}?${_csrf.parameterName}=${_csrf.token}"/>
-<form:form modelAttribute="itemAttribute" method="post" action="${save}" enctype="multipart/form-data">
+<c:url var="save" value="/updateCar/${car.id}?${_csrf.parameterName}=${_csrf.token}"/>
+<form:form modelAttribute="car" method="post" action="${save}" enctype="multipart/form-data">
     <table>
         <tr>
             <td><form:label path="name">Name:</form:label></td>
@@ -18,18 +18,18 @@
         </tr>
 
         <tr>
-            <td><form:label path="content">Content:</form:label></td>
+            <td><form:label path="content">Description:</form:label></td>
             <td><form:input path="content"/></td>
         </tr>
 
         <tr>
-            <td><form:label path="brand">Category:</form:label></td>
+            <td><form:label path="brand">Brand:</form:label></td>
             <td><form:select path="brand" items="${brands}" itemLabel="name" itemValue="id"/></td>
         </tr>
 
         <tr>
             <td><form:label path="pathImage">Image:</form:label></td>
-            <td><img src="/${itemAttribute.pathImage}" alt=""></td>
+            <td><img src="/${car.pathImage}" alt=""></td>
             <td><form:input type="hidden" path="pathImage"/></td>
         </tr>
 

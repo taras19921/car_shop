@@ -51,7 +51,7 @@
            placeholder="Search..."/>
 </div>
 
-<div class="dropdown" style="float: left; padding-left: 10px; margin-top: 10px;">
+<%--<div class="dropdown" style="float: left; padding-left: 10px; margin-top: 10px;">
     <button class="dropdown-toggle; btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">
         Categories
     </button>
@@ -65,7 +65,7 @@
         <li><span class="mySpan">Storage</span></li>
         <li><span class="mySpan">Motherboard</span></li>
     </ul>
-</div>
+</div>--%>
 
 <div class="wrapper">
     <span style="margin-top: 90px"><i class="cart_anchor"></i></span>
@@ -76,6 +76,7 @@
             <div class="car">
                 <img src="${car.pathImage}" alt="">
                 <h2><c:out value="${car.name}"/><p style="float: right">$<em>${car.price}</em></p></h2>
+                <h2><c:out value="${car.content}"/></h2>
                 <sec:authorize access="isAuthenticated() && hasRole('ROLE_USER')">
                     <button style="margin: auto; display: block;" class="add-to-cart"
                             onclick="window.location.href='addToCart/${car.id}'">AddToCart
@@ -108,7 +109,7 @@
                 <custom:pageable page="${cars}" cell="<li></li>" container="<ul class='pagination'></ul>"/>
             </div>
             <div class="col-md-2 col-xs-6">
-                <custom:size posibleSizes="1,2,5,10,20" size="${cars.size}"/>
+                <custom:size posibleSizes="1,2,5,10,25,50,100" size="${cars.size}"/>
             </div>
         </div>
     </div>

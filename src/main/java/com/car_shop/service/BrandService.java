@@ -4,7 +4,7 @@ import com.car_shop.entity.Brand;
 
 import java.util.List;
 
-public interface CategoryService
+public interface BrandService
 {
     void add(Brand brand);
     void delete(int id);

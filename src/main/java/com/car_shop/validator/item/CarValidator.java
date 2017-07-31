@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ItemValidator implements Validator
+public class CarValidator implements Validator
 {
     private final CarDao carDao;
 
     @Autowired
-    public ItemValidator(CarDao carDao)
+    public CarValidator(CarDao carDao)
     {
         this.carDao = carDao;
     }
@@ -24,22 +24,22 @@ public class ItemValidator implements Validator
 
         if(car.getName().isEmpty())
         {
-            throw new ItemException(ItemValidationMessages.EMPTY_ITEMNAME_FIELD);
+            throw new CarException(CarValidationMessages.EMPTY_ITEMNAME_FIELD);
         }
 
         else if(carDao.findByName(car.getName()) != null)
         {
-            throw new ItemException(ItemValidationMessages.ITEMNAME_ALREADY_EXIST);
+            throw new CarException(CarValidationMessages.ITEMNAME_ALREADY_EXIST);
         }
 
         else if(car.getContent().isEmpty())
         {
-            throw new ItemException(ItemValidationMessages.EMPTY_CONTENT_FIELD);
+            throw new CarException(CarValidationMessages.EMPTY_CONTENT_FIELD);
         }
 
         else if(car.getPrice() == 0)
         {
-            throw new ItemException(ItemValidationMessages.ZERO_PRICE_FIELD);
+            throw new CarException(CarValidationMessages.ZERO_PRICE_FIELD);
         }
     }
 }

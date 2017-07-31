@@ -4,7 +4,7 @@ import com.car_shop.entity.Car;
 
 import java.beans.PropertyEditorSupport;
 
-public class ItemEditor extends PropertyEditorSupport
+public class CarEditor extends PropertyEditorSupport
 {
     @Override
     public void setAsText(String id) throws IllegalArgumentException

@@ -169,7 +169,7 @@ public class PageableTag extends SimpleTagSupport{
     }
 
     public void setPage(Page<?> page) {
-        if(page==null) throw new IllegalArgumentException("В контроллері переіменуйте всі атрибути з значенням findAll() на page");
+        if(page==null) throw new IllegalArgumentException("");
         last = page.getTotalPages();
         current = page.getNumber()+1;
         size = page.getSize();

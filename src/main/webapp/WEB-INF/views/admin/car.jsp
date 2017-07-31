@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<form:form modelAttribute="item" action="/saveItem?${_csrf.parameterName}=${_csrf.token}"
+<form:form modelAttribute="car" action="saveCar?${_csrf.parameterName}=${_csrf.token}"
            method="post" enctype="multipart/form-data">
     <table>
         <tr>
@@ -20,7 +20,7 @@
         </tr>
 
         <tr>
-            <td><form:label path="content">Content:</form:label></td>
+            <td><form:label path="content">Description:</form:label></td>
             <td><form:input path="content"/></td>
             <td style="color: red">${itemcontentException}</td>
         </tr>
@@ -36,4 +36,5 @@
         </tr>
     </table>
     <input type="submit" value="Save" />
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form:form>

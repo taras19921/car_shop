@@ -56,7 +56,7 @@
                 <custom:pageable page="${users}" cell="<li></li>" container="<ul class='pagination'></ul>"/>
             </div>
             <div class="col-md-2 col-xs-6">
-                <custom:size posibleSizes="1,2,5,10" size="${users.size}"/>
+                <custom:size posibleSizes="1,2,5,10,25,50,100" size="${users.size}"/>
             </div>
         </div>
     </div>

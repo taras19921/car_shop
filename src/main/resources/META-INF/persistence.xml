@@ -9,7 +9,7 @@
         <properties>
 
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost/yourpc?createDatabaseIfNotExist=true" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost/car_shop?createDatabaseIfNotExist=true" />
             <property name="hibernate.connection.username" value="root" />
             <property name="hibernate.connection.password" value="root" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
