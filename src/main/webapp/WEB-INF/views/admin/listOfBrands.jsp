@@ -7,7 +7,7 @@
 <div>
     <div class="container">
 
-        <form action="<c:url value="/category"/>">
+        <form action="<c:url value="/brand"/>">
             <input type="submit" value="<%--<spring:message code="label.AddCategory"/>--%>" />
         </form>
 

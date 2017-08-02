@@ -27,9 +27,9 @@
                     <td><c:out value="${user.email}"/></td>
                     <td><c:out value="${user.address}"/></td>
                     <td><c:out value="${user.role}"/></td>
-                    <td><a href="/deleteUser/${user.id}">Delete</a></td>
-                    <td><a href="/blockUser/${user.id}">Block</a></td>
-                    <td><a href="/unblockUser/${user.id}">Unblock</a></td>
+                    <td><a href="deleteUser/${user.id}">Delete</a></td>
+                    <td><a href="blockUser/${user.id}">Block</a></td>
+                    <td><a href="unblockUser/${user.id}">Unblock</a></td>
                 </tr>
             </c:forEach>
             </tbody>

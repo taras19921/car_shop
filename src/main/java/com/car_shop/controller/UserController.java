@@ -88,9 +88,9 @@ public class UserController
             return "views-user-signUp";
         }
 
-        String theme = "thank's for registration";
+        String theme = "Welcome!";
         String mailBody =
-                "Please follow   http://localhost/car_shop/confirm/" + uuid  + "  for registration completion";
+                "Please follow   http://localhost:8080/car_shop/confirm/" + uuid  + "  for registration completion";
 
         mailSenderService.sendMail(theme, mailBody, user.getEmail());
         return "redirect:/";

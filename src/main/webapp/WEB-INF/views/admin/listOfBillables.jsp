@@ -33,8 +33,8 @@
                     </c:forEach>
                     </td>
                     <td><c:out value="${billable.price}" /></td>
-                    <td><a href="/deleteBillable/${billable.id}">Delete</a></td>
-                    <td><a href="/updateBillable/${billable.id}">Update</a></td>
+                    <td><a href="car_shop/deleteBillable/${billable.id}">Delete</a></td>
+                    <td><a href="car_shop/updateBillable/${billable.id}">Update</a></td>
                 </tr>
             </c:forEach>
             </tbody>
